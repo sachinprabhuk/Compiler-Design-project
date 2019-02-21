@@ -1,30 +1,34 @@
-const ID = "ID";
-const ARITHOP = "ARITHOP";
-const RELOP = "RELOP";
-const DATATYPE = "DATATYPE";
-const NUMBER = "NUMBER";
-const SAMEOP = "SAMEOP";
+const DT = "DT";
+const MAIN = "MAIN";
+const OB = "OB";
+const CB = "CB";
 const BEGIN = "BEGIN";
 const END = "END";
-const OPENBRACKET = "OPENBRACKET";
-const CLOSEBRACKET = "CLOSEBRACKET";
-const MAIN = "MAIN";
-const FOR = "FOR";
-const ASSIGNMENT = "ASSIGNMENT";
-const STM_TERMINATOR = "STM_TERMINATOR";
-const COMMA = "COMMA";
+const SC = "SC";
+const CM = "CM";
+const ID = "ID";
+const ASSI = "ASSI";
+const NUM = "NUM";
+const RELOP = "RELOP";
+const INCR = "INCR";
+const DECR = "DECR";
+const PLUS = "PLUS";
+const MINUS = "MINUS";
+const PROD = "PROD";
+const DIV = "DIV";
+const MOD = "MOD";
 
 const tokenArray = [
   {
-    token: ASSIGNMENT,
+    token: ASSI,
     pattern: /^=$/
   },
   {
-    token: COMMA,
+    token: CM,
     pattern: /^,$/
   },
   {
-    token: STM_TERMINATOR,
+    token: SC,
     pattern: /^;$/
   },
   {
@@ -44,11 +48,35 @@ const tokenArray = [
     pattern: /for/
   },
   {
-    token: DATATYPE,
+    token: DT,
     pattern: /^(int|bool|void|float)$/
   },
   {
-    token: SAMEOP,
+    token: PLUS,
+    patter: /^\+$/
+  },
+  {
+    token: MINUS,
+    patter: /^-$/
+  },
+  {
+    token: DIV,
+    patter: /^\/$/
+  },
+  {
+    token: PROD,
+    patter: /^\*$/
+  },
+  {
+    token: MOD,
+    patter: /^%$/
+  },
+  {
+    token: INCR,
+    pattern: /\+\+|\-\-/
+  },
+  {
+    token: DECR,
     pattern: /\+\+|\-\-/
   },
   {
@@ -56,7 +84,7 @@ const tokenArray = [
     pattern: /^begin$/
   },
   {
-    token: NUMBER,
+    token: NUM,
     pattern: /^(\d+)$/
   },
   {
@@ -64,11 +92,11 @@ const tokenArray = [
     pattern: /^main$/
   },
   {
-    token: OPENBRACKET,
+    token: OB,
     pattern: /^\($/
   },
   {
-    token: CLOSEBRACKET,
+    token: CB,
     pattern: /^\)$/
   },
   {
@@ -77,9 +105,7 @@ const tokenArray = [
   },
 ];
 
-
 module.exports = {
-  ID, ARITHOP, RELOP, DATATYPE, NUMBER, SAMEOP, BEGIN, END, OPENBRACKET,
-  CLOSEBRACKET, MAIN, FOR, ASSIGNMENT, STM_TERMINATOR, COMMA,
-  tokenArray
+  DT, MAIN, OB, CB, BEGIN, END, SC, CM, ID, ASSI, NUM, RELOP, INCR,
+  DECR, PLUS, MINUS, PROD, DIV, MOD, tokenArray
 }
