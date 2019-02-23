@@ -5,18 +5,24 @@ const CB = "CB";
 const BEGIN = "BEGIN";
 const END = "END";
 const SC = "SC";
-const CM = "CM";
 const ID = "ID";
 const ASSI = "ASSI";
-const NUM = "NUM";
-const RELOP = "RELOP";
-const INCR = "INCR";
-const DECR = "DECR";
+const CM = "CM";
+const FOR = "FOR";
+const LT = "LT";
+const GT = "GT";
+const LE = "LE";
+const GE = "GE";
+const NE = "NE";
+const EQ = "EQ";
 const PLUS = "PLUS";
 const MINUS = "MINUS";
 const PROD = "PROD";
 const DIV = "DIV";
 const MOD = "MOD";
+const INCR = "INCR";
+const DECR = "DECR";
+const NUM = "NUM";
 
 const tokenArray = [
   {
@@ -31,21 +37,19 @@ const tokenArray = [
     token: SC,
     pattern: /^;$/
   },
-  {
-    token: ARITHOP,
-    pattern: /^(\+|\-|\*|\/|\*\*|\^)$/
-  },
-  {
-    token: RELOP,
-    pattern: /^(<|>|!=|>=|<=|==)$/
-  },
+  { token: LT, pattern: /^<$/ },
+  { token: GT, pattern: /^>$/ },
+  { token: LE, pattern: /^<=$/ },
+  { token: GE, pattern: /^>=$/ },
+  { token: NE, pattern: /^!=$/ },
+  { token: EQ, pattern: /^==$/},
   {
     token: END,
-    pattern: /end/
+    pattern: /^end$/
   },
   {
     token: FOR,
-    pattern: /for/
+    pattern: /^for$/
   },
   {
     token: DT,
@@ -53,31 +57,31 @@ const tokenArray = [
   },
   {
     token: PLUS,
-    patter: /^\+$/
+    pattern: /^\+$/
   },
   {
     token: MINUS,
-    patter: /^-$/
+    pattern: /^-$/
   },
   {
     token: DIV,
-    patter: /^\/$/
+    pattern: /^\/$/
   },
   {
     token: PROD,
-    patter: /^\*$/
+    pattern: /^\*$/
   },
   {
     token: MOD,
-    patter: /^%$/
+    pattern: /^%$/
   },
   {
     token: INCR,
-    pattern: /\+\+|\-\-/
+    pattern: /^(\+\+)$/
   },
   {
     token: DECR,
-    pattern: /\+\+|\-\-/
+    pattern: /^(\-\-)$/
   },
   {
     token: BEGIN,
@@ -106,6 +110,7 @@ const tokenArray = [
 ];
 
 module.exports = {
-  DT, MAIN, OB, CB, BEGIN, END, SC, CM, ID, ASSI, NUM, RELOP, INCR,
-  DECR, PLUS, MINUS, PROD, DIV, MOD, tokenArray
+  DT, MAIN, OB, CB, BEGIN, END, SC, ID, ASSI, CM, FOR, LT, GT, LE,
+  GE, NE, EQ, PLUS, MINUS, PROD, DIV, MOD, INCR, DECR, NUM,
+  tokenArray
 }

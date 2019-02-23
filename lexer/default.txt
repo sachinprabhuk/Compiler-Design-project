@@ -1,0 +1,5 @@
+int main()
+begin
+  for(i=0;i<10;++i)
+    i = i   +10;
+end
