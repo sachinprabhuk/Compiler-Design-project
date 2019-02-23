@@ -20,6 +20,7 @@ const getTokens = (filePath, test) => {
   const code = fs.readFileSync(filePath, "utf8");
   return code
     .replace(/\/\/.*/g, "")
+    .replace(/(\/\*(?:(?!\*\/).|[\n\r])*\*\/)/g, "")
     .replace(/(\+\+|\-\-|\w+|\(|\))/g, " $1 ")
     .trim()
     .replace(/\s+/g, " ")
@@ -29,8 +30,8 @@ const getTokens = (filePath, test) => {
 
 const defaultPath = path.join(__dirname, "./default.txt");
 
-module.exports = function(filePath = defaultPath, test=false) {
-  if(filePath !== defaultPath && !fs.existsSync(filePath))
+module.exports = function(filePath, test=false) {
+  if(!filePath || !fs.existsSync(filePath))
     filePath = defaultPath;
 
   let currTokenIndex = 0;    
