@@ -1,5 +1,10 @@
 int main()
 begin
   for(i=0;i<10;++i)
-    i = i   +10;
+  begin
+    for(j=0;j<5;j++)
+    begin
+      ++s;
+    end
+  end
 end

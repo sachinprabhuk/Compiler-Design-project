@@ -1,9 +1,10 @@
 const { argv } = process;
-const filePath = argv.length > 2 && argv[2] ? argv[2] : "code.txt";
-const getNextToken = require("./lexer/lex")(filePath, true);
+const filePath = argv.length > 2 && argv[2] ? argv[2] : null;
+const getNextToken = require("./lexer/lex")(filePath);
 
-let token = null;
-do {
-  token = getNextToken();
-  console.log(token);
-} while (token != null);
+const parser = require("./parser/parser")(getNextToken);
+
+process.on("SIGTERM", e => {
+  console.log('exiting!');
+  console.log(e);
+})

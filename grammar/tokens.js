@@ -23,6 +23,7 @@ const MOD = "MOD";
 const INCR = "INCR";
 const DECR = "DECR";
 const NUM = "NUM";
+const epsilon = "epsilon"
 
 const tokenArray = [
   {
@@ -112,5 +113,5 @@ const tokenArray = [
 module.exports = {
   DT, MAIN, OB, CB, BEGIN, END, SC, ID, ASSI, CM, FOR, LT, GT, LE,
   GE, NE, EQ, PLUS, MINUS, PROD, DIV, MOD, INCR, DECR, NUM,
-  tokenArray
+  tokenArray, epsilon
 }
