@@ -1,9 +1,4 @@
 int main()
 begin
-// asdfasfd
-/*asdfas 
-*/
-  int a;
-  /*
-  asfasfa*/
+  float a, h
 end

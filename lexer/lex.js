@@ -36,6 +36,7 @@ module.exports = function(filePath, test=false) {
 
   let currTokenIndex = 0;    
   const tokens = getTokens(filePath, test);
+  tokens.push("$");
   const tokenCount = tokens.length;
 
   return () => {
