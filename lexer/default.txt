@@ -1,4 +1,4 @@
 int main()
 begin
-  float a, h
+  a = 1, b
 end

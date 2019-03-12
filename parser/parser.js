@@ -12,9 +12,11 @@ module.exports = function(getNextToken) {
   let stackTop;
   console.log(getEntry("Stack top", "curr token", "Output"));
   let valid = true;
+
   while (true) {
     stackTop = stack[stack.length-1];
-
+    
+    // && stackTop === "$"
     if (currToken === "$") {
       console.log(
         getEntry(stackTop, currToken, `Parsing done!`)
@@ -36,8 +38,16 @@ module.exports = function(getNextToken) {
         currToken = getNextToken();
       }else {
         valid = false;
-        console.log(getEntry(stackTop, currToken, `Mismatch!Popping stack`));
-        stack.pop();
+        if(stack.length === 2) {
+          console.log(
+            getEntry(stackTop, currToken, `Skipping curr input!`)
+          );
+          currToken = getNextToken();
+        }else {
+          console.log(getEntry(stackTop, currToken, `Mismatch!Popping stack`));
+          stack.pop();
+        }
+        
       }
     }else {
       // top of the stack is a non-terminal
@@ -49,7 +59,7 @@ module.exports = function(getNextToken) {
       }
       else if(prod === "sync") {
         valid = false;
-        if(stack.length === 1) {
+        if(stack.length === 2) {
           console.log(getEntry(stackTop, currToken, `sync! skipping i/p`));
           currToken = getNextToken();
         }
@@ -66,5 +76,6 @@ module.exports = function(getNextToken) {
             stack.push(prod.body[i]);
       }
     }
+
   }
 };

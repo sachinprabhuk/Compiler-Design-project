@@ -21,7 +21,7 @@ const getTokens = (filePath, test) => {
   return code
     .replace(/\/\/.*/g, "")
     .replace(/(\/\*(?:(?!\*\/).|[\n\r])*\*\/)/g, "")
-    .replace(/(\+\+|\-\-|\w+|\(|\))/g, " $1 ")
+    .replace(/(\+\+|\-\-|\w+|\(|\)|\+|-|\*|\/|\%)/g, " $1 ")
     .trim()
     .replace(/\s+/g, " ")
     .split(" ")
