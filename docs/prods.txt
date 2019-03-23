@@ -1,0 +1,36 @@
+S -> dt main ob cb begin Stmt end
+Stmt -> Decl Stmt
+Stmt -> Loop Stmt
+Stmt -> Expr sc Stmt
+Stmt -> ''
+Decl -> dt Vars sc
+Vars -> id Vars_
+Vars -> cm Vars
+Vars -> ''
+Vars_ -> Vars
+Vars_ -> assi SimpleExp Vars
+Loop -> for ob Init sc Comp sc Expr cb begin Stmt end
+Init -> id assi SimpleExp
+Comp -> Term Relop Term
+Relop -> lt
+Relop -> gt
+Relop -> ge
+Relop -> le
+Relop -> eq
+Relop -> ne
+Expr -> id Expr_
+Expr -> Unop id
+Expr_ -> assi SimpleExp
+Expr_ -> Unop
+SimpleExp -> Term SimpleExp_
+SimpleExp_ -> Arithop Term SimpleExp_
+SimpleExp_ -> ''
+Arithop -> plus
+Arithop -> minus
+Arithop -> div
+Arithop -> prod
+Arithop -> mod
+Unop -> incr
+Unop -> decr
+Term -> id
+Term -> num

@@ -80,7 +80,8 @@ module.exports = {
     [tokens.ID]: prods[25],
     [tokens.NUM]: prods[25],
     [tokens.SC]: sync,
-    [tokens.CB]: sync
+    [tokens.CB]: sync,
+    [tokens.CM]: sync
   },
   [NT.simpleExp_]: {
     [tokens.SC]: prods[27],
@@ -114,6 +115,7 @@ module.exports = {
     [tokens.NUM]: prods[36],
     [tokens.CB]: sync,
     [tokens.SC]: sync,
+    [tokens.CM]: sync,
     [tokens.LT]: sync,
     [tokens.GT]: sync,
     [tokens.LE]: sync,

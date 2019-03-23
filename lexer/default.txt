@@ -1,4 +1,7 @@
 int main()
 begin
-  a = 1, b
+  for(i=0;i<10;++i)
+  begin
+  end
+  int a, b = 10*12+79;
 end

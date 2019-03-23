@@ -17,7 +17,7 @@ module.exports = function(getNextToken) {
     stackTop = stack[stack.length-1];
     
     // && stackTop === "$"
-    if (currToken === "$") {
+    if (currToken === "$" || currToken === null) {
       console.log(
         getEntry(stackTop, currToken, `Parsing done!`)
       );
@@ -47,7 +47,6 @@ module.exports = function(getNextToken) {
           console.log(getEntry(stackTop, currToken, `Mismatch!Popping stack`));
           stack.pop();
         }
-        
       }
     }else {
       // top of the stack is a non-terminal

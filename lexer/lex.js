@@ -38,7 +38,9 @@ module.exports = function(filePath, test=false) {
   const tokens = getTokens(filePath, test);
   tokens.push("$");
   const tokenCount = tokens.length;
-
+  // tokens.forEach(el => {
+  //   process.stdout.write(el.toLowerCase() + " ");
+  // })
   return () => {
     if(currTokenIndex === tokenCount)
       return null;
