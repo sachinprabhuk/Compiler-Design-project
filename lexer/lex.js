@@ -30,7 +30,7 @@ const getTokens = (filePath, test) => {
 
 const defaultPath = path.join(__dirname, "./default.txt");
 
-module.exports = function(filePath, test=false) {
+module.exports = function(filePath, printToken = false, test=false) {
   if(!filePath || !fs.existsSync(filePath))
     filePath = defaultPath;
 
@@ -38,9 +38,16 @@ module.exports = function(filePath, test=false) {
   const tokens = getTokens(filePath, test);
   tokens.push("$");
   const tokenCount = tokens.length;
-  // tokens.forEach(el => {
-  //   process.stdout.write(el.toLowerCase() + " ");
-  // })
+  if(printToken) {
+    console.log("-".repeat(100));    
+    process.stdout.write("tokens: ");
+    tokens.forEach(el => {
+      process.stdout.write(el + " ");
+    });
+    console.log();
+    console.log("-".repeat(100), "\n");
+  }
+    
   return () => {
     if(currTokenIndex === tokenCount)
       return null;

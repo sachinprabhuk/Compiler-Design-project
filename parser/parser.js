@@ -1,9 +1,10 @@
-const table = require("../grammar/table");
+const { table } = require("../grammar/table");
 const NT = require("../grammar/NT");
 const { epsilon } = require("../grammar/tokens");
 
 const getEntry = (top, curr, str) => {
-  return `${top}\t\t\t${curr}\t\t\t${str}`;
+
+  return `${top}${" ".repeat(20 - top.length)}${curr}${" ".repeat(20 - curr.length)}${str}`;
 }
 
 module.exports = function(getNextToken) {
@@ -11,13 +12,14 @@ module.exports = function(getNextToken) {
   let currToken = getNextToken();
   let stackTop;
   console.log(getEntry("Stack top", "curr token", "Output"));
+  console.log("-".repeat(80));
   let valid = true;
 
   while (true) {
     stackTop = stack[stack.length-1];
     
     // && stackTop === "$"
-    if (currToken === "$" || currToken === null) {
+    if (currToken === "$" || currToken === null || stack.length < 0) {
       console.log(
         getEntry(stackTop, currToken, `Parsing done!`)
       );
