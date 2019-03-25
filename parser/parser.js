@@ -10,6 +10,7 @@ module.exports = function(getNextToken) {
   const stack = ["$", NT.s];
   let currToken = getNextToken();
   let stackTop;
+  console.log("\n\n\n\nTop down parsing steps: ");
   console.log(getEntry("Stack top", "curr token", "Output"));
   console.log("-".repeat(80));
   let valid = true;

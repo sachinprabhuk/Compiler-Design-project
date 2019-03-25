@@ -39,6 +39,7 @@ module.exports = function(filePath, printToken = false, test=false) {
   tokens.push("$");
   const tokenCount = tokens.length;
   if(printToken) {
+    console.log("\n\n\n\nTokens: ");
     console.log("-".repeat(100));    
     process.stdout.write("tokens: ");
     tokens.forEach(el => {

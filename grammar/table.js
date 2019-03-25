@@ -131,7 +131,58 @@ module.exports = {
       [tokens.MOD]: sync
     }
   },
+  getMaxProdLenIn: function(tk) {
+    let maxLen = 0, prod;
+    for(let nt in NT)
+      if(this.table[nt][tk]) {
+        prod = this.table[nt][tk];
+        maxLen = (
+          prod === sync ?
+          Math.max(4, maxLen) :
+          Math.max(maxLen, prod.printable.length)
+        );
+      }
+    return Math.max(maxLen, tk.length);
+  },
+  getEntryAt: function(nt, tk) {
+    let entry = this.table[nt][tk]
+    return (
+      entry ? (entry === sync ? sync : entry.printable) 
+      : ""
+    );
+  },
   print: function() {
-    console.log(JSON.stringify(this.table, null, 5));
+    console.log("Parsing table: ");
+    let temp, len, maxLenObj = {};
+    // printing table header.
+    for(let {token} of tkarray) {
+      maxLenObj[token] = this.getMaxProdLenIn(token);
+      process.stdout.write(
+        `${token}${" ".repeat(maxLenObj[token]-token.length)} | `
+      );
+    }
+
+    // printing separator bw table head and body.
+    console.log();
+    for(let {token} of tkarray)
+      process.stdout.write("-".repeat(maxLenObj[token]+3));
+    console.log();
+
+    // printing table body.
+    for(let nt in NT) {
+      for(let {token} of tkarray) {
+        temp = this.getEntryAt(nt, token);
+        len = temp.length;
+        process.stdout.write(
+          `${temp}${" ".repeat(maxLenObj[token]-len)} | `
+        );
+      }
+      console.log();
+    }
+
+    // printing table end
+    for(let {token} of tkarray)
+      process.stdout.write("-".repeat(maxLenObj[token]+3));
+    console.log();
   }
 }
