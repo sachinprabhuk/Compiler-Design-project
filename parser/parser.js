@@ -3,7 +3,6 @@ const NT = require("../grammar/NT");
 const { epsilon } = require("../grammar/tokens");
 
 const getEntry = (top, curr, str) => {
-
   return `${top}${" ".repeat(20 - top.length)}${curr}${" ".repeat(20 - curr.length)}${str}`;
 }
 
@@ -19,7 +18,7 @@ module.exports = function(getNextToken) {
     stackTop = stack[stack.length-1];
     
     // && stackTop === "$"
-    if (currToken === "$" || currToken === null || stack.length < 0) {
+    if (currToken === "$" || !currToken || stack.length < 1) {
       console.log(
         getEntry(stackTop, currToken, `Parsing done!`)
       );
@@ -42,7 +41,7 @@ module.exports = function(getNextToken) {
         valid = false;
         if(stack.length === 2) {
           console.log(
-            getEntry(stackTop, currToken, `Skipping curr input!`)
+            getEntry(stackTop, currToken, `Skipping curr input/token!`)
           );
           currToken = getNextToken();
         }else {
@@ -55,13 +54,13 @@ module.exports = function(getNextToken) {
       let prod = table[stackTop][currToken];
       if(prod === undefined) {
         valid = false;
-        console.log(getEntry(stackTop, currToken, `no entry! skipping i/p`));
+        console.log(getEntry(stackTop, currToken, `no entry! skipping current input/token`));
         currToken = getNextToken();
       }
       else if(prod === "sync") {
         valid = false;
         if(stack.length === 2) {
-          console.log(getEntry(stackTop, currToken, `sync! skipping i/p`));
+          console.log(getEntry(stackTop, currToken, `sync! skipping curr input/token`));
           currToken = getNextToken();
         }
         else {

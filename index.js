@@ -10,9 +10,6 @@ const getNextToken = require("./lexer/lex")(
   argv.find(arg => arg === "-tk") !== undefined
 );
 
-
-
 // getNextToken is a function which is passed to parser.
 // so that it can access the tokens...
 require("./parser/parser")(getNextToken);
-
