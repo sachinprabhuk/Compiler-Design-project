@@ -153,8 +153,9 @@ module.exports = {
   },
   print: function() {
     console.log("Parsing table: ");
-    let temp, len, maxLenObj = {};
+    let temp, len, maxLenObj = {}, ntMaxLen = 20;
     // printing table header.
+    process.stdout.write(" ".repeat(ntMaxLen) + " | ");
     for(let {token} of tkarray) {
       maxLenObj[token] = this.getMaxProdLenIn(token);
       process.stdout.write(
@@ -170,6 +171,9 @@ module.exports = {
 
     // printing table body.
     for(let nt in NT) {
+      process.stdout.write(
+        `${nt}${" ".repeat(ntMaxLen - nt.length)} | `
+      );
       for(let {token} of tkarray) {
         temp = this.getEntryAt(nt, token);
         len = temp.length;
