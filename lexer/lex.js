@@ -50,7 +50,7 @@ module.exports = function(filePath, printToken = false, test=false) {
   }
     
   return () => {
-    if(currTokenIndex === tokenCount)
+    if(currTokenIndex >= tokenCount)
       return null;
     return tokens[currTokenIndex++];
   }

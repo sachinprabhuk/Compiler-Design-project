@@ -40,7 +40,7 @@ module.exports = function(getNextToken) {
         currToken = getNextToken();
       }else {
         valid = false;
-        if(stack.length === 2) {
+        if(stack.length <= 2) {
           console.log(
             getEntry(stackTop, currToken, `Skipping curr input/token!`)
           );
@@ -60,7 +60,7 @@ module.exports = function(getNextToken) {
       }
       else if(prod === "sync") {
         valid = false;
-        if(stack.length === 2) {
+        if(stack.length <= 2) {
           console.log(getEntry(stackTop, currToken, `sync! skipping curr input/token`));
           currToken = getNextToken();
         }
@@ -77,6 +77,5 @@ module.exports = function(getNextToken) {
             stack.push(prod.body[i]);
       }
     }
-
   }
 };

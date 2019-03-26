@@ -165,6 +165,7 @@ module.exports = {
 
     // printing separator bw table head and body.
     console.log();
+    process.stdout.write("-".repeat(ntMaxLen+4));
     for(let {token} of tkarray)
       process.stdout.write("-".repeat(maxLenObj[token]+3));
     console.log();
@@ -185,8 +186,10 @@ module.exports = {
     }
 
     // printing table end
+    process.stdout.write("-".repeat(ntMaxLen+4));
     for(let {token} of tkarray)
       process.stdout.write("-".repeat(maxLenObj[token]+3));
     console.log();
+
   }
 }
